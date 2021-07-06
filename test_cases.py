@@ -39,14 +39,21 @@ def test_negamax():
     for test in tests:
         assert negamax(test[0]) == test[1]
 
-def state_p_to_negamax_p(state_player):
-    return ((state_player * 2) - 1) * -1
 
 def test_negamax():
     tests = [
         ((0, 4, 4, 0, 1), 1),
         ((0, 0, 1, 0, 3), -1),
         ((1, 0, 1, 4, 4), 1)
+        ((0, 0, 1, 4, 4), -1)
+        ((0, 0, 1, 0, 3), -1),
+        ((1, 0, 1, 0, 4), 1),
+        ((0, 0, 3, 0, 3), 1),
+        ((1, 2, 3, 0, 3), 1),
+        ((1, 0, 3, 0, 3), 1),
+        ((0, 0, 1, 0, 3), -1),
+        ((0, 0, 4, 0, 1), 1),
+        ((1, 0, 4, 0, 0), -1)
     ]
     for test in tests:
         assert negamax(test[0], 12, state_p_to_negamax_p(test[0][0])) == test[1]
