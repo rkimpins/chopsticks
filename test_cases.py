@@ -29,3 +29,12 @@ def test_validate_state():
     for test in tests:
         print(validate_state(test[0]))
         assert validate_state(test[0]) == test[1]
+
+def test_negamax():
+    tests = [
+        ((0, 4, 4, 0, 1), 1),
+        ((0, 0, 1, 0, 3), -1),
+        ((1, 0, 1, 4, 4), 1)
+    ]
+    for test in tests:
+        assert negamax(test[0]) == test[1]

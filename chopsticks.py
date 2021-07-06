@@ -91,11 +91,31 @@ def winner(state):
         return 1
     return -1
 
+def state_value(state):
+    if (state[1] == 0 and state[2] == 0):
+        if state[0] == 0:
+            return 1
+        else:
+            return -1
+    if (state[3] == 0 and state[4] == 0):
+        if state[0] == 1:
+            return 1
+        else:
+            return -1
+    return 0
 
+def negamax(state, depth, player):
+    if depth == 0 or game_over(state):
+        return player * state_value(state)
+    value = float("-inf")
+    children = next_states(state)
+    for child in children:
+        value = max(value, negamax(child, depth - 1, -player))
+    return value * -1
 
 def main():
-    test_switch_next_states()
-    #state = (turn, {p1 2 hands}, {p2 2 hands})
+    result = negamax((0, 1, 1, 1, 1), 14, 1)
+    print(result)
 
 
 
